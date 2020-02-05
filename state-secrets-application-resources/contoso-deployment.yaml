@@ -1,0 +1,28 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    active: contosopodid
+    app: contosodeployment
+    aadpodidbinding: keyvaultsampleidentity
+  name: contosodeployment
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: ready-api
+      aadpodidbinding: keyvaultsampleidentity
+  template:
+    metadata:
+      labels:
+        k8s-app: ready-api
+        aadpodidbinding: keyvaultsampleidentity
+    spec:
+      containers:
+        - image: izzymsft/contosodemo:1.8
+          name: contosodemo
+          ports:
+            - containerPort: 8080
+              name: frontdoor

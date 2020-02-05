@@ -1,0 +1,44 @@
+---
+# External Load Balancer
+apiVersion: v1
+kind: Service
+metadata:
+  name: contoso-api-service-external
+  namespace: default
+  labels:
+    k8s-app: contosopodid-external-loadbalancer
+    kubernetes.io/cluster-service: "true"
+    addonmanager.kubernetes.io/mode: Reconcile
+    kubernetes.io/name: "contoso-api-service"
+spec:
+  type: LoadBalancer
+  ports:
+    - name : frontdoor
+      port: 8080
+      protocol: TCP
+      targetPort: frontdoor
+  selector:
+    k8s-app: ready-api
+---
+# Internal Load Balancer
+apiVersion: v1
+kind: Service
+metadata:
+  name: contoso-api-service-internal
+  namespace: default
+  annotations:
+    service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+  labels:
+    k8s-app: contosopodid-internal-loadbalancer
+    kubernetes.io/cluster-service: "true"
+    addonmanager.kubernetes.io/mode: Reconcile
+    kubernetes.io/name: "contoso-api-service"
+spec:
+  type: LoadBalancer
+  ports:
+    - name : frontdoor
+      port: 8080
+      protocol: TCP
+      targetPort: frontdoor
+  selector:
+    k8s-app: ready-api

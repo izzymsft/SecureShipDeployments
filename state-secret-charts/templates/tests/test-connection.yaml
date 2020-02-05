@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "state-secret-charts.fullname" . }}-test-connection"
+  labels:
+    {{- include "state-secret-charts.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test-success
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['{{ include "state-secret-charts.fullname" . }}:{{ .Values.service.port }}']
+  restartPolicy: Never

@@ -1,0 +1,20 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: contoso-demo
+  labels:
+    app.kubernetes.io/name: contoso-demo
+    app.kubernetes.io/part-of: contoso-demo
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: contoso-api-configs
+  namespace: contoso-resources
+  labels:
+    app.kubernetes.io/name: contoso-demo
+    app.kubernetes.io/part-of: contoso-demo
+data:
+  key.vault.url: "https://reservations-api.ocpbees.com"
+  application.environment: "Production"

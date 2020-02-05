@@ -1,0 +1,8 @@
+apiVersion: "aadpodidentity.k8s.io/v1"
+kind: AzureIdentity
+metadata:
+  name: productappidentity
+spec:
+  type: 0
+  ResourceID: "/subscriptions/86d61f02-2fcf-4a37-bb6e-cc2c2db9f67d/resourcegroups/BastionResources/providers/Microsoft.ManagedIdentity/userAssignedIdentities/productappidentity"
+  ClientID: "d11bfd21-7726-4a73-ab0d-8b640b50ae48"

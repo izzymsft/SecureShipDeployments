@@ -1,0 +1,43 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    active: contosopodid
+    app: contosodeployment
+    aadpodidbinding: keyvaultsampleidentity
+  name: contosodeployment
+  namespace: contoso-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: ready-api
+      aadpodidbinding: keyvaultsampleidentity
+  template:
+    metadata:
+      labels:
+        k8s-app: ready-api
+        aadpodidbinding: keyvaultsampleidentity
+    spec:
+      containers:
+        - image: izzymsft/contosodemo:1.8
+          name: contosodemo
+          ports:
+            - containerPort: 8080
+              name: frontdoor
+          env:
+            - name: KEY_VAULT_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: contoso-api-configs
+                  key: key.vault.url
+            - name: MSI_CLIENT_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: contoso-api-configs
+                  key: msi.client.id
+            - name: API_VERSION
+              value: "1.0"
+            - name: API_REVISION
+              value: "3"
