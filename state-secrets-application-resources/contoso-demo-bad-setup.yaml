@@ -16,6 +16,8 @@ metadata:
     app.kubernetes.io/name: contoso-demo
     app.kubernetes.io/part-of: contoso-demo
 data:
-  key.vault.url: "https://readybank.vault.azure.net/"
-  msi.client.id: "173e1693-d554-488e-8402-23ac5f7a2867"
+  key.vault.url: "https://winteready.vault.azure.net/"
+  msi.client.id: "dada-d554-488e-8402-23ac5f7a2867"
+  msi.client.password: "Extremely_Secure_P855word_That_Cannot_Be_Hacked!!!"
+  msi.client.tenant: "dada-86f1-41af-91ab-2d7cd011db47"
   application.environment: "Production"

@@ -4,7 +4,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: contoso-api-service-external
-  namespace: default
+  namespace: contoso-demo
   labels:
     k8s-app: contosopodid-external-loadbalancer
     kubernetes.io/cluster-service: "true"
@@ -25,7 +25,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: contoso-api-service-internal
-  namespace: default
+  namespace: contoso-demo
   annotations:
     service.beta.kubernetes.io/azure-load-balancer-internal: "true"
   labels:

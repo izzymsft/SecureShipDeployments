@@ -7,7 +7,7 @@ metadata:
     app: contosodeployment
     aadpodidbinding: keyvaultsampleidentity
   name: contosodeployment
-  namespace: contoso-demo
+  namespace: {{ .Values.appData.namespace }}
 spec:
   replicas: 1
   selector:
@@ -21,10 +21,10 @@ spec:
         aadpodidbinding: keyvaultsampleidentity
     spec:
       containers:
-        - image: izzymsft/contosodemo:1.8
+        - image: {{ .Values.image.imageName }}:{{ .Values.image.imageVersion }}
           name: contosodemo
           ports:
-            - containerPort: 8080
+            - containerPort: {{ .Values.service.port }}
               name: frontdoor
           env:
             - name: KEY_VAULT_URL
@@ -37,7 +37,3 @@ spec:
                 configMapKeyRef:
                   name: contoso-api-configs
                   key: msi.client.id
-            - name: API_VERSION
-              value: "1.0"
-            - name: API_REVISION
-              value: "3"

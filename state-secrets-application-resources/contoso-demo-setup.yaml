@@ -11,10 +11,11 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: contoso-api-configs
-  namespace: contoso-resources
+  namespace: contoso-demo
   labels:
     app.kubernetes.io/name: contoso-demo
     app.kubernetes.io/part-of: contoso-demo
 data:
-  key.vault.url: "https://reservations-api.ocpbees.com"
+  key.vault.url: "https://readybank.vault.azure.net/"
+  msi.client.id: "173e1693-d554-488e-8402-23ac5f7a2867"
   application.environment: "Production"
