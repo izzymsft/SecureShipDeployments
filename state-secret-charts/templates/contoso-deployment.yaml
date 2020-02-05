@@ -9,7 +9,7 @@ metadata:
   name: contosodeployment
   namespace: {{ .Values.appData.namespace }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       k8s-app: ready-api
