@@ -1,5 +1,5 @@
 
-## Resources, TOols and Best Practices
+## Resources, Tools and Best Practices
 
 - [AKS Best Practices](https://docs.microsoft.com/en-us/azure/aks/best-practices)
 - [AAD Pod Identity](https://github.com/Azure/aad-pod-identity)
